@@ -1,0 +1,183 @@
+a
+  color: $clrPrimaryMain
+  text-decoration: none
+  transition: all 0.3s ease
+  &:hover, &:focus
+    text-decoration: none
+    color: $clrPrimaryHover
+
+
+
+// buttons
+button
+  -webkit-appearance: none
+  border: 0
+  box-shadow: none
+  cursor: pointer
+  &:focus
+    outline: none
+
+.btn
+  display: inline-flex
+  position: relative
+  align-items: center
+  justify-content: center
+  text-align: center
+  cursor: pointer
+  transition: all $transitionSpeed $ease
+  color: #fff
+  background: $clrPrimaryMain
+  border-radius: 4px
+  padding: 9px 16px
+  font-weight: 500
+  border: 1px solid $clrPrimaryMain
+  +r($xl)
+    padding: 7px 10px
+  .svg-icon
+    margin-right: 4px
+    fill: currentColor
+  &:focus, &:active
+    outline: none
+  &:hover
+    background: $clrPrimaryHover
+    color: #fff
+    border-color: $clrPrimaryHover
+  
+  
+  &--second
+    color: $clrPrimaryMain
+    background: $clrPrimarySecond
+    border-color: $clrPrimarySecond
+    &:hover
+      color: $clrPrimaryHover
+      background: $clrPrimarySecond
+  &--white
+    color: $clrGrey90
+    background: $clrGrey10
+    border-color: $clrGrey10
+    &:hover
+      color: $clrGrey10
+      background: $clrPrimaryMain
+      border-color: $clrPrimaryMain
+  &--gray
+    border-color: $clrPrimaryMain
+    color: $clrPrimaryMain
+    background: $clrGrey20
+    &:hover
+      color: $clrGrey10
+      background: $clrPrimaryHover
+      border-color: $clrPrimaryHover
+
+  &--inline
+    border-color: rgba(255,255,255, 0)
+    background: none
+    color: $clrGrey90
+    padding-left: 0
+    padding-right: 0
+    &:hover
+      background: none
+      border-color: rgba(255,255,255, 0)
+      color: $clrPrimaryHover
+    
+      
+.link-box
+  display: inline-flex
+  align-items: center
+  .svg-icon
+    margin-right: 8px
+
+.link--red
+  color: $clrDangerMain
+  
+// НЕ МОИ СТИЛИ
+.button
+  border: none
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  gap: 4px
+  padding: 8px 16px
+  text-decoration: none
+  cursor: pointer
+  transition: 0.3s
+  font-weight: 500
+  font-size: 14px
+  color: var(--color-grey-90)
+  transition-duration: 0.3s
+  transition-property: border-color, background-color
+  box-sizing: border-box
+.button__icon
+  fill: currentColor
+.button_theme_main
+  background: var(--color-primary-main)
+  border-radius: 4px
+  font-weight: 500
+  font-size: 14px
+  line-height: 1.43
+  color: var(--color-grey-10)
+  &:hover
+    background: var(--color-primary-hover)
+  &:focus
+    outline: 3px solid var(--color-primary-focus)
+  &:active
+    background: var(--color-primary-pressed)
+.button_theme_outline
+  background: transparent
+  border-radius: 4px
+  font-weight: 500
+  font-size: 14px
+  line-height: 1.43
+  color: var(--color-primary-main)
+  padding: 6px 14px
+  border: 1px solid var(--color-primary-border)
+  &:hover
+    color: var(--color-primary-hover)
+    border-color: var(--color-primary-hover)
+  &:focus
+    border-color: transparent
+    outline: 3px solid var(--color-primary-focus)
+  &:active
+    background-color: transparent
+    color: var(--color-primary-pressed)
+    border-color: var(--color-primary-pressed)
+.button_theme_text
+  background: transparent
+  border-radius: 4px
+  font-weight: 500
+  font-size: 14px
+  line-height: 1.43
+  color: var(--color-primary-main)
+  &:hover
+    color: var(--color-primary-hover)
+  &:focus
+    outline: 3px solid var(--color-primary-focus)
+  &:active
+    background-color: transparent
+    color: var(--color-primary-pressed)
+.button_width_full
+  width: 100%
+.button_type_main
+  background: var(--color-primary-main)
+  border-radius: 4px
+  font-weight: 500
+  font-size: 14px
+  line-height: 1.43
+  color: var(--color-grey-10)
+  &:hover
+    opacity: 0.8
+.button_with_icon
+  &::before
+    content: ''
+    display: block
+    width: 16px
+    height: 16px
+    margin-right: 8px
+    background-position: center
+    background-repeat: no-repeat
+    background-size: contain
+.button_icon_door
+  &::before
+    background-image: url(@img/icon_door.svg)
+.button_icon_gear
+  &::before
+    background-image: url(@img/icon_gear.svg)

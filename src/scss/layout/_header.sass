@@ -1,0 +1,109 @@
+.header
+  width: 100%
+  padding: 24px 40px
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12)
+  +r($xl)
+    padding: 16px
+  +r($lg)
+    background: $clrGrey20
+  .all
+    display: flex
+    align-items: center
+  .b-link
+    margin-right: auto
+    font-weight: 500
+    display: flex
+    +r($lg)
+      margin-right: 12px
+    .link-logo
+      min-width: 31px
+      max-width: 31px
+    .link-main
+      display: inline-flex
+      .svg-icon
+        margin-right: 4px
+  &-content
+    display: flex
+    align-items: center
+    margin-left: 20px
+    +r($lg)
+      display: none
+  &-message
+    margin-right: 40px
+    text-align: right
+    overflow: hidden
+    flex: 1 1 auto
+    
+    &__text
+      max-width: 99%
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+  &-search
+    margin-right: 24px
+    flex: 1 1 auto
+    display: flex
+    justify-content: flex-end
+    +r($lg)
+      margin-right: 0
+    .input--search
+      border: 1px solid $clrPrimaryMain
+      width: 50%
+      max-width: 320px
+      background: #fff url("~@/assets/img/icon_magnifying-glass.svg") 12px 50% no-repeat
+      padding-left: 48px
+      +r($xl)
+        width: 100%
+  &-btns
+    white-space: nowrap
+    display: flex
+    gap: 24px
+    .btn--inline
+      color: $clrGrey90
+  .auth-info
+    display: flex
+    align-items: center
+    position: relative
+    
+    &.show
+      .auth-info__dropdown
+        display: block
+    &-wrapper
+      display: flex
+      align-items: center
+      gap: 24px
+    &__label
+      overflow: hidden
+      white-space: nowrap
+      display: flex
+      align-items: center
+      gap: 8px
+      cursor: pointer
+    &__list
+      margin: 0 -16px
+      padding: 0
+      list-style: none
+      display: flex
+      flex-direction: column
+      li
+        padding: 12px 16px
+        border-top: 1px solid $clrGrey40
+    &__dropdown
+      display: none
+      box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.10)
+      border-radius: 4px
+      background: #fff
+      padding: 16px 16px 4px
+      position: absolute
+      top: 100%
+      right: 0
+      z-index: 3
+      width: 230px
+      font-weight: 300
+      font-size: 14px
+      white-space: normal
+      .name
+        font-weight: 500
+        padding-bottom: 8px
+      .text
+        padding-bottom: 12px

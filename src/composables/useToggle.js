@@ -9,6 +9,6 @@ export function useToggle() {
 
   return {
     isVisible,
-    toggleVisibility,
+    toggleVisibility
   };
 }

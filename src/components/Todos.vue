@@ -21,16 +21,16 @@ div
 
 </template>
 <script>
-import { useStore, mapState } from 'vuex'
+import { useStore, mapState } from "vuex";
 import { useToggle } from "@/composables/useToggle";
 
-import SvgIcon from '@/components/SvgIcon';
+import SvgIcon from "@/components/SvgIcon";
 
 export default {
   name: "Todos",
   components: {
     SvgIcon
-   },
+  },
   setup() {
     const store = useStore();
 
@@ -59,13 +59,11 @@ export default {
     };
   },
   computed: {
-    ...mapState('todos', ['todos']),
+    ...mapState("todos", ["todos"])
   },
-  methods: {
-  
-  },
-  mounted () {
-    this.$store.dispatch('todos/onFetchTodos')
+  methods: {},
+  mounted() {
+    this.$store.dispatch("todos/onFetchTodos");
   }
 };
 </script>

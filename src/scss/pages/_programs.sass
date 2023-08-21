@@ -1,0 +1,98 @@
+.table-programm
+  td
+    vertical-align: top
+  .text-name
+    color: $clrGrey90
+    +r($lg)
+      font-weight: 500
+  .text-date
+    color: $clrGrey60
+    margin-bottom: 2px
+  .td-name
+    width: 40%
+    +r($lg)
+      width: 45%
+  .td-status
+    width: 193px
+  .tuggler-buttons
+    display: none
+    gap: 32px
+    position: absolute
+    top: 14px
+    left: 8px
+    right: 8px
+    &.--mobile
+      +r($lg)
+        display: flex
+        gap: 12px
+        flex-wrap: wrap
+        justify-content: center
+        position: relative
+        top: 0
+        left: 0
+        right: 0
+    .btn
+      &--inline
+        color: $clrPrimaryMain
+        font-weight: 300
+        &:hover
+          color: $clrPrimaryHover
+  .td-toggler:hover
+    .tuggler-text
+      z-index: -1
+      opacity: 0
+      +r($lg)
+        z-index: 0
+        opacity: 1
+    .tuggler-buttons
+      display: block
+      +r($lg)
+        display: none
+      .btn
+        margin-right: 32px
+
+.table-header
+  display: flex
+  padding-bottom: 12px
+  gap: 12px
+  +r($lg)
+    flex-wrap: wrap
+    .lg-icon
+      border-radius: 4px
+      border: 1px solid $clrGrey30
+      flex: 0 0 36px
+      display: flex
+      align-items: center
+      justify-content: center
+      
+  &__left
+    margin-right: auto
+    display: flex
+    gap: 24px
+    +r($lg)
+      width: 100%
+      gap: 12px
+      flex-wrap: wrap
+  .dropdown--sorting
+    background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yLjY0NjQ1IDEwLjY0NjRDMi44NDE3MSAxMC40NTEyIDMuMTU4MjkgMTAuNDUxMiAzLjM1MzU1IDEwLjY0NjRMNSAxMi4yOTI5TDYuNjQ2NDUgMTAuNjQ2NEM2Ljg0MTcxIDEwLjQ1MTIgNy4xNTgyOSAxMC40NTEyIDcuMzUzNTUgMTAuNjQ2NEM3LjU0ODgyIDEwLjg0MTcgNy41NDg4MiAxMS4xNTgzIDcuMzUzNTUgMTEuMzUzNkw1LjM1MzU1IDEzLjM1MzZDNS4xNTgyOSAxMy41NDg4IDQuODQxNzEgMTMuNTQ4OCA0LjY0NjQ1IDEzLjM1MzZMMi42NDY0NSAxMS4zNTM2QzIuNDUxMTggMTEuMTU4MyAyLjQ1MTE4IDEwLjg0MTcgMi42NDY0NSAxMC42NDY0WiIgZmlsbD0iIzQyNDI0MiIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTUgMi41QzUuMjc2MTQgMi41IDUuNSAyLjcyMzg2IDUuNSAzVjEzQzUuNSAxMy4yNzYxIDUuMjc2MTQgMTMuNSA1IDEzLjVDNC43MjM4NiAxMy41IDQuNSAxMy4yNzYxIDQuNSAxM1YzQzQuNSAyLjcyMzg2IDQuNzIzODYgMi41IDUgMi41WiIgZmlsbD0iIzQyNDI0MiIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjY0NjQgMi42NDY0NUMxMC44NDE3IDIuNDUxMTggMTEuMTU4MyAyLjQ1MTE4IDExLjM1MzYgMi42NDY0NUwxMy4zNTM2IDQuNjQ2NDVDMTMuNTQ4OCA0Ljg0MTcxIDEzLjU0ODggNS4xNTgyOSAxMy4zNTM2IDUuMzUzNTVDMTMuMTU4MyA1LjU0ODgyIDEyLjg0MTcgNS41NDg4MiAxMi42NDY0IDUuMzUzNTVMMTEgMy43MDcxMUw5LjM1MzU1IDUuMzUzNTVDOS4xNTgyOSA1LjU0ODgyIDguODQxNzEgNS41NDg4MiA4LjY0NjQ1IDUuMzUzNTVDOC40NTExOCA1LjE1ODI5IDguNDUxMTggNC44NDE3MSA4LjY0NjQ1IDQuNjQ2NDVMMTAuNjQ2NCAyLjY0NjQ1WiIgZmlsbD0iIzQyNDI0MiIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTExIDIuNUMxMS4yNzYxIDIuNSAxMS41IDIuNzIzODYgMTEuNSAzVjEzQzExLjUgMTMuMjc2MSAxMS4yNzYxIDEzLjUgMTEgMTMuNUMxMC43MjM5IDEzLjUgMTAuNSAxMy4yNzYxIDEwLjUgMTNWM0MxMC41IDIuNzIzODYgMTAuNzIzOSAyLjUgMTEgMi41WiIgZmlsbD0iIzQyNDI0MiIvPgo8L3N2Zz4K") 16px 50% no-repeat
+    background-size: 16px auto
+    padding-left: 24px
+    .p-dropdown-panel
+      left: auto !important
+      right: 0 !important
+    +r($lg)
+      background: none
+      padding-left: 0
+  &__right
+    display: flex
+    gap: 24px
+    +r($lg)
+      width: 100%
+      gap: 12px
+  
+
+.table-programm.p-datatable
+  .p-datatable-tbody
+    > tr.p-highlight
+      background: inherit
+      +r($lg)

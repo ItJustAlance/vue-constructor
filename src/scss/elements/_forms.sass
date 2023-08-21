@@ -1,0 +1,84 @@
+input, button, select, textarea
+ font-family: $baseFont
+.input
+  border-radius: 4px
+  border: 1px solid $clrGrey40
+  background: #FFF
+  padding: 8px
+  font-size: 14px
+  font-weight: 300
+  color: $clrGrey70
+  width: 100%
+  &:hover
+    border-color: $clrPrimaryHover
+  &:focus
+    outline: 2px solid $clrPrimaryFocus
+    border-color: $clrPrimaryFocus
+  
+textarea.input
+  min-height: 56px
+.form
+  display: flex
+  flex-direction: column
+  gap: 32px
+
+  &-label
+    color: $clrGrey90
+    display: flex
+    align-items: center
+    padding-bottom: 8px
+    font-size: 16px
+    font-weight: 300
+    .text
+      display: inline-flex
+      vertical-align: top
+      margin-right: 4px
+  
+
+  
+// НЕ МОИ СТИЛИ
+.form__row
+  margin-top: 24px
+  
+  &:first-child
+    margin-top: 0
+
+.form__label
+  display: block
+  margin: 0 0 4px
+  font-weight: 300
+  font-size: 16px
+  line-height: 1.5
+  color: var(--color-grey-90)
+
+.form__error-msg
+  font-weight: 300
+  font-size: 12px
+  line-height: 16px
+  color: var(--color-danger-main)
+
+.form__buttons
+  margin: 48px 0 0
+  display: flex
+  flex-direction: column
+  gap: 24px
+
+  
+.input_theme_public
+  font-weight: 300
+  font-size: 14px
+
+  
+  
+
+.input_width_full
+  width: 100%
+
+.input_with_icon
+  padding-left: 44px
+  background-position: left 8px center
+  background-repeat: no-repeat
+  background-size: 24px 24px
+
+.input_icon_search
+  background-image: url("@img/icon_magnifying-glass.svg")

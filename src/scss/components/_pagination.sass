@@ -1,0 +1,28 @@
+.pagination
+  font-weight: 500
+  display: flex
+  align-items: center
+  color: $clrGrey50
+  &-label
+    min-width: 54px
+    text-align: center
+    margin-right: 12px
+  &-nav
+    gap: 12px
+    display: flex
+    .btn
+      min-width: 36px
+      max-width: 36px
+      height: 36px
+      display: flex
+      align-items: center
+      justify-content: center
+      border-radius: 4px
+      padding: 0
+      .svg-icon
+        width: 20px
+        height: 20px
+      
+      &.--disabled
+        background: $clrGrey20
+        color: $clrGrey50

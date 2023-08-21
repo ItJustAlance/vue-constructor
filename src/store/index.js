@@ -1,15 +1,17 @@
-import { createStore, createLogger } from 'vuex'
+import { createStore, createLogger } from "vuex";
 
-import todos from "./modules/todos";
+import general from "./modules/general";
+import auth from "./modules/auth";
+import modals from "./modules/modals";
 
-
-const debug = process.env.NODE_ENV !== 'production'
-
+const debug = process.env.NODE_ENV !== "production";
 
 export default createStore({
   modules: {
-    todos
+    general,
+    auth,
+    modals
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []
-})
+});

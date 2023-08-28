@@ -76,15 +76,15 @@
 						Column.td-name(field="name" expander header="Название программы" filterMatchMode="startsWith")
 							template(#body="slotProps")
 								.text-name
-									| {{ slotProps.data.name }}
+									| {{ slotProps.data.id }} - {{ slotProps.data.name }}
 								.text-date
 									| {{ slotProps.data.created_at.date }}
-								.text-row(v-if="mqSize.lg > windowsSize" v-html="getStatus(slotProps.data.status.name)")
+								.text-row(v-if="mqSize.lg > windowsSize && slotProps.data.status" v-html="getStatus(slotProps.data.status.name)")
 								
 						getSeverity(slotProps.data.status)
 						Column.td-status(field="status" v-if="mqSize.lg < windowsSize" header="Статус" filterField="status" filterMatchMode="contains")
 							template(#body="slotProps")
-								.flex.align-items-center.gap-2( :value="slotProps.data.status.name" v-html="getStatus(slotProps.data.status.name)" )
+								.flex.align-items-center.gap-2(v-if="slotProps.data.status" :value="slotProps.data.status.name" v-html="getStatus(slotProps.data.status.name)" )
 						Column.td-category.td-toggler(field="name" expander header="Категория" filterMatchMode="contains")
 							template(#body="slotProps")
 								.tuggler-text( :value="slotProps.data.categories.name")
@@ -163,17 +163,7 @@ const selectedProduct = ref();
 const expandedRows = ref([]);
 
 
-onMounted(() => {
-  store.commit("general/setTheme", "theme-light");
 
-  loading.value = true;
-
-  lazyParams.value = {
-		page: 0,
-		per_page: dt.value.rows,
-  };
-  loadLazyData();
-});
 
 const dt = ref();
 const loading = ref(false);
@@ -192,21 +182,22 @@ const selectAll = ref(false);
 const selectedSortProgramm = ref();
 // eslint-disable-next-line no-unused-vars
 const sortProgramm = ref([
-  { name: "По дате создания от большего к меньшему", code: "1-2" },
-  { name: "По дате создания от меньшего к большему", code: "2-1" },
-  { name: "По алфавиту от А до Я", code: "ABC" },
-  { name: "По алфавиту от Я до А", code: "BCA" }
+  {name: "По дате создания от большего к меньшему", params: {sort_order: "asc", sort_by: "date_create", type: "sortProgramm"}},
+  {name: "По дате создания от меньшего к большему", params: {sort_order: "desc", sort_by: "date_create", type: "sortProgramm"}},
+  {name: "По алфавиту от А до Я", params: {sort_order: "asc", sort_by: "name", type: "sortProgramm"}},
+  {name: "По алфавиту от Я до А", params: {sort_order: "desc", sort_by: "name", type: "sortProgramm"}}
 ]);
 
 // eslint-disable-next-line no-unused-vars
 const selectedStatusProgramm = ref();
 // eslint-disable-next-line no-unused-vars
 const statusProgramm = ref([
-  { name: "На доработку", code: "revision" },
-  { name: "На экспертизе", code: "examination" },
-  { name: "Одобрена", code: "approved" },
-  { name: "Отклонена", code: "rejected" },
-  { name: "На портале ДПО", code: "dpo" }
+	{name: "Все", code: "0", params: {status_id: "0", type: "sortProgramm"}},
+	{name: "На доработку", code: "revision", params: {status_id: "0", type: "sortProgramm"}},
+  {name: "На экспертизе", code: "examination", params: {status_id: "0", type: "sortProgramm"}},
+  {name: "Одобрена", code: "approved", params: {status_id: "0", type: "sortProgramm"}},
+  {name: "Отклонена", code: "rejected", params: {status_id: "0", type: "sortProgramm"}},
+  {name: "На портале ДПО", code: "dpo", params: {status_id: "0", type: "sortProgramm"}}
 ]);
 
 // eslint-disable-next-line no-unused-vars
@@ -233,6 +224,16 @@ const categoryProgramm = ref([
 const lazyParams = ref({});
 
 
+onMounted(() => {
+	store.commit("general/setTheme", "theme-light");
+	loading.value = true;
+	lazyParams.value = {
+		page: 1,
+		per_page: dt.value.rows,
+	};
+	loadLazyData();
+});
+
 // eslint-disable-next-line no-unused-vars
 const showAction = (event) => { // туглер таблицы для мобилы
 	const isExpanded = expandedRows.value.find((p) => p.id === event.data.id)
@@ -247,6 +248,7 @@ const showAction = (event) => { // туглер таблицы для мобил
 }
 // eslint-disable-next-line no-unused-vars
 const getStatus = status => {
+	console.log('status', status)
   switch (status) {
     case "На доработку":
       return '<span class="badge-status --revision">На доработку</span>';
@@ -275,7 +277,8 @@ const loadLazyData = () => {
     ProgramsService.getCustomers(
        lazyParams.value
     ).then(data => {
-      console.log("data", data.data);
+      // console.log("data", data.data);
+			//console.log('slotProps.data.status.name', data.data.items[0].status)
       programs.value = data.data.items;
       totalRecords.value = data.data.pagination.total;
       loading.value = false;
@@ -284,9 +287,15 @@ const loadLazyData = () => {
 };
 // eslint-disable-next-line no-unused-vars
 const onPage = event => {
-	console.log('onPage', event)
-  lazyParams.value = event;
-  loadLazyData();
+	console.log('onPage', JSON.parse(JSON.stringify(event)));
+	let params = null;
+	let val = JSON.parse(JSON.stringify(event));
+	// формируем нужный нам вид
+	params = {
+		value: {params: {page: val.page + 1, per_page: val.rows}}
+	}
+  // lazyParams.value = event;
+	onLoadPrograms(params);
 };
 // eslint-disable-next-line no-unused-vars
 // const onSort = event => {
@@ -309,13 +318,15 @@ const onRowUnselect = () => {
 };
 
 // eslint-disable-next-line no-unused-vars
-const onLoadPrograms = event => {
-  const params = event.value;
-  console.log("onLoadPrograms", event);
+const onLoadPrograms = (event, param) => {
 
-  ProgramsService.getCustomers({ lazyEvent: JSON.stringify(params) }).then(
+	console.log('event', event)
+	// обьединяем установленные параметры и новые
+	Object.assign(lazyParams.value, event.value.params)
+	
+  ProgramsService.getCustomers(lazyParams.value).then(
     data => {
-      programs.value = [];
+      programs.value = data.data.items;
       totalRecords.value = data.data.pagination.total;
       loading.value = false;
     }

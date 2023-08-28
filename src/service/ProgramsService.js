@@ -33,7 +33,7 @@ export const ProgramsService = {
   // eslint-disable-next-line no-unused-vars
   async getCustomers(params) {
     try {
-      console.log('getCustomers', params)
+      console.log("getCustomers", params);
       const result = await getSend("programs", params);
       console.log("ddd", result);
       return result;
